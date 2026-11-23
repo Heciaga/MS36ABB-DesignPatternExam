@@ -16,7 +16,9 @@ public class PaymentService {
     // ---------- Provayderlərin SDK-ları: xarici kitabxanalardır, dəyişdirmək olmaz ----------
 
     static class PayLinkSdk {
-        /** Məbləğ qəpiklə. @return 0 uğurlu, başqa kod xətadır. */
+        /**
+         * Məbləğ qəpiklə. @return 0 uğurlu, başqa kod xətadır.
+         */
         int charge(String card, long amount) {
             System.out.println("   PayLink: " + amount + " qapik");
             return amount <= 100_000 ? 0 : 51;
@@ -24,7 +26,9 @@ public class PaymentService {
     }
 
     static class EasyPaySdk {
-        /** Uğursuz olanda exception atır. */
+        /**
+         * Uğursuz olanda exception atır.
+         */
         void makePayment(BigDecimal amount, String currency, String card) {
             System.out.println("   EasyPay: " + amount + " " + currency);
             if (amount.compareTo(new BigDecimal("2000")) > 0) {
@@ -34,7 +38,9 @@ public class PaymentService {
     }
 
     static class GlobalPaySdk {
-        /** Yalnız USD qəbul edir. @return "OK" və ya "DECLINED". */
+        /**
+         * Yalnız USD qəbul edir. @return "OK" və ya "DECLINED".
+         */
         String process(double amountUsd, String card) {
             System.out.println("   GlobalPay: " + String.format("%.2f", amountUsd) + " USD");
             return amountUsd <= 1000 ? "OK" : "DECLINED";
